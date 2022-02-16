@@ -1,15 +1,13 @@
 <%-- 
     Document   : save_peminjaman
     Created on : Feb 6, 2022, 10:53:51 AM
-    Author     : User
+    Author     : Jihan
 --%>
 
-
-
-<%@page import="java.sql.*,java.util.*,javax.servlet.*" %>
+<%@page import="java.sql.*,java.util.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%    
+<%
     int kode_peminjaman = Integer.parseInt(request.getParameter("kode_peminjaman"));
     String kategori = request.getParameter("kategori");
     String nama_peminjam = request.getParameter("nama_peminjam");
@@ -23,17 +21,18 @@
     String jam_mulai = request.getParameter("jam_mulai");
     String jam_selesai = request.getParameter("jam_selesai");
     String keperluan = request.getParameter("keperluan");
+    String nama_anggota = request.getParameter("nama_anggota");
     String no_ruangan = request.getParameter("no_ruangan");
     String surat_tugas = request.getParameter("surat_tugas");
     String host = "jdbc:mysql://localhost:3306/genap";
-    
+
     try {
         Class.forName("com.mysql.jdbc.Driver");
         Connection conn = DriverManager.getConnection(host, "root", "");
         if (conn != null) {
             if (kode_peminjaman != 0) {
 
-                PreparedStatement pst = conn.prepareStatement("INSERT INTO peminjaman VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                PreparedStatement pst = conn.prepareStatement("INSERT INTO peminjaman VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 pst.setInt(1, kode_peminjaman);
                 pst.setString(2, kategori);
                 pst.setString(3, nama_peminjam);
@@ -47,9 +46,10 @@
                 pst.setString(11, jam_mulai);
                 pst.setString(12, jam_selesai);
                 pst.setString(13, keperluan);
-                pst.setString(14, no_ruangan);
-                pst.setString(15, surat_tugas);
-                pst.setString(16, "pengajuan");
+                pst.setString(14, nama_anggota);
+                pst.setString(15, no_ruangan);
+                pst.setString(16, surat_tugas);
+                pst.setString(17, "pengajuan");
                 pst.executeUpdate();
 
                 response.sendRedirect("data.jsp");
@@ -57,8 +57,8 @@
         } else {
             response.sendRedirect("gagalSimpanPeminjaman.jsp");
         }
-  //  } //catch (SQLException ex) {
-      //  out.print("Gagal Koneksi");
+        //  } //catch (SQLException ex) {
+        //  out.print("Gagal Koneksi");
     } catch (Exception ex) {
         out.print(ex.getMessage());
     }
