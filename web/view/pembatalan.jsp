@@ -27,7 +27,7 @@
                             try {
                                 Class.forName("com.mysql.jdbc.Driver");
                                 Connection conn = DriverManager.getConnection(host, "root", "");
-                                String query = "select * from peminjaman where no_induk='2055301011' and status = 'pengajuan'";
+                                String query = "select * from peminjaman where status = 'pengajuan' order by kode_peminjaman desc limit 1";
                                 Statement stmt = conn.createStatement();
                                 ResultSet rs = null;
                                 rs = stmt.executeQuery(query);
