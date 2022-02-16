@@ -1,11 +1,10 @@
 <%-- 
     Document   : indexpeminjam
     Created on : Feb 7, 2022, 9:47:08 PM
-    Author     : Ella
+    Author     : Jihan
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="db.connection" %>
 <%@page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
@@ -92,7 +91,7 @@
                         
 
                         <!-- Footer -->
-                        <%@include file="footer.html" %>
+                        
                         <a class="scroll-to-top rounded" href="#page-top">
                             <i class="fas fa-angle-up"></i>
                         </a>
@@ -100,6 +99,6 @@
                         <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
                         <script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
                         <script src="../assets/js/ruang-admin.min.js"></script>
-
+<%@include file="footer.html" %>
                         </body>
                         </html>
