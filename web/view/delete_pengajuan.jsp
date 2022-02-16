@@ -1,7 +1,7 @@
 <%-- 
     Document   : edit_pembatalan
     Created on : Feb 7, 2022, 8:37:13 PM
-    Author     : HP-OMEN
+    Author     : Jihan
 --%>
 <%@page import="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
