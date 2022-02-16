@@ -1,11 +1,10 @@
 <%-- 
     Document   : indexpeminjam
     Created on : Feb 7, 2022, 9:47:08 PM
-    Author     : Ella
+    Author     : Jihan
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="db.connection" %>
 <%@page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
@@ -150,12 +149,46 @@
                                                 <input type="text" name="keperluan" class="form-control" id="keperluan" placeholder="Keperluan">
                                             </div>
                                         </div>
+                                            <div class="form-group row">
+                                            <label for="nama_anggota" class="col-sm-3 col-form-label">Nama Anggota</label>
+                                            <div class="col-sm-9">
+                                                <textarea name="nama_anggota" class="form-control" id="nama_anggota">Nama Anggota</textarea>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
                                             <label for="no_ruangan" class="col-sm-3 col-form-label">Ruangan</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="no_ruangan" class="form-control" id="no_ruangan" placeholder="Ruangan">
+
+                                                <%@page import= "java.sql.*, java.io.*" %>
+                                                <%
+                                                    try {
+                                                        String Host = "jdbc:mysql://localhost:3306/genap";
+                                                        Connection connection = null;
+                                                        Statement statement = null;
+                                                        ResultSet rs = null;
+                                                        Class.forName("com.mysql.jdbc.Driver");
+                                                        connection = DriverManager.getConnection(Host, "root", "");
+                                                        statement = connection.createStatement();
+                                                        String Data = "select * from datalab";
+                                                        rs = statement.executeQuery(Data);
+                                                %>
+                                                <select name="no_ruangan" class="form-control" id="no_ruangan">
+                                                    <% while (rs.next()) {%>
+                                                    <option value="<%=rs.getInt("no_ruangan")%>"><%=rs.getString("no_ruangan")%></option>
+                                                    <% } %>
+                                                </select>
+                                                <%
+                                                        rs.close();
+                                                        statement.close();
+                                                        connection.close();
+                                                    } catch (SQLException e) {
+                                                        out.println("Can't connect to database. with error = " + e.getMessage());
+                                                    }
+                                                %>
                                             </div>
                                         </div>
+                                        
                                         <div class="form-group row">
                                             <label for="surat_tugas" class="col-sm-3 col-form-label">Surat Tugas</label>
                                             <div class="col-sm-9">
